@@ -19,7 +19,7 @@
                         @click="handleTabChange(index)">{{item.text}}</li>
                 </ul>
                 <div class="search">
-                    <input type="text" v-model="id" class="bar" @keyup.enter="handleSearch" ref="bar">
+                    <input type="number" v-model="id" class="bar" @keyup.enter="handleSearch" ref="bar">
                     <button class="btn" @click="handleClear">清空搜索框</button>
                 </div>
             </div>
