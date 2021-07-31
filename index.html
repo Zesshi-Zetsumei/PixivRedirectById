@@ -20,7 +20,7 @@
                 </ul>
                 <div class="search">
                     <input type="tel" v-model="id" class="bar" @keyup.enter="handleSearch" ref="bar"
-                        oninput="value=value.replace(/[^\d]/g,'')">
+                        oninput="value=value.replace(/[^\d]/g,'')" placeholder="请输入作品/作者id进行搜索">
                     <div class="btns">
                         <button class="btn" @click="handleClear">清空搜索框</button>
                         <button class="btn" @click="handleSearch">搜索</button>
@@ -35,7 +35,7 @@
             data() {
                 return {
                     id: '',
-                    tabs: [{ text: '按id搜索作品', urlStr: 'artworks' }, { text: '按id搜索作者', urlStr: 'users' }],
+                    tabs: [{ text: '搜作品', urlStr: 'artworks' }, { text: '搜作者', urlStr: 'users' }],
                     currentTabIndex: 0
                 }
             },
@@ -123,6 +123,11 @@
         text-align: center;
     }
 
+    ::-webkit-input-placeholder {
+        color: #ccc;
+        font-size: 15px;
+    }
+
     .bar {
         display: block;
         text-align: center;
@@ -145,7 +150,7 @@
         background-color: white;
         outline: none;
         padding: 10px;
-        font-size: 14px;
+        font-size: 15px;
         cursor: pointer;
         -webkit-tap-highlight-color: transparent;
     }
