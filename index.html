@@ -21,7 +21,10 @@
                 <div class="search">
                     <input type="tel" v-model="id" class="bar" @keyup.enter="handleSearch" ref="bar"
                         oninput="value=value.replace(/[^\d]/g,'')">
-                    <button class="btn" @click="handleClear">清空搜索框</button>
+                    <div class="btns">
+                        <button class="btn" @click="handleClear">清空搜索框</button>
+                        <button class="btn" @click="handleSearch">搜索</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -32,7 +35,7 @@
             data() {
                 return {
                     id: '',
-                    tabs: [{ text: '按作品id搜索', urlStr: 'artworks' }, { text: '按作者id搜索', urlStr: 'users' }],
+                    tabs: [{ text: '按id搜索作品', urlStr: 'artworks' }, { text: '按id搜索作者', urlStr: 'users' }],
                     currentTabIndex: 0
                 }
             },
@@ -46,6 +49,7 @@
                 },
                 handleSearch() {
                     window.open(`https://www.pixiv.net/${this.tabs[this.currentTabIndex].urlStr}/` + this.id)
+                    this.focusBar()
                 },
                 handleClear() {
                     this.id = ''
@@ -138,14 +142,27 @@
         padding: 2px;
     }
 
+    .btns {
+        display: flex;
+        justify-content: center;
+        padding-top: 10px;
+    }
+
     .btn {
+        flex: 1;
         border: none;
         background-color: white;
         outline: none;
         padding: 10px;
-        margin-top: 10px;
+        font-size: 14px;
         cursor: pointer;
         -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn:last-child {
+        margin-left: 20px;
+        background-color: #2196f6;
+        color: white;
     }
 </style>
 
