@@ -39,24 +39,15 @@
                     currentTabIndex: 0
                 }
             },
-            mounted() {
-                this.focusBar()
-            },
             methods: {
                 handleTabChange(index) {
                     this.currentTabIndex = index
-                    this.focusBar()
                 },
                 handleSearch() {
                     window.open(`https://www.pixiv.net/${this.tabs[this.currentTabIndex].urlStr}/` + this.id)
-                    this.focusBar()
                 },
                 handleClear() {
                     this.id = ''
-                    this.focusBar()
-                },
-                focusBar() {
-                    this.$refs.bar.focus()
                 }
             }
         })
