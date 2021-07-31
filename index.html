@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <title>Pixiv id搜索</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="box">
+            <div class="content">
+                <div class="title"><span class="name">Pixiv</span> id搜索</div>
+                <ul class="tabs">
+                    <li v-for="(item, index) in tabs" :class="{active: currentTabIndex === index}"
+                        @click="handleTabChange(index)">{{item.text}}</li>
+                </ul>
+                <div class="search">
+                    <input type="text" v-model="id" class="bar" @keyup.enter="handleSearch" ref="bar">
+                    <button class="btn" @click="handleClear">清空搜索框</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data() {
+                return {
+                    id: '',
+                    tabs: [{ text: '按作品id搜索', urlStr: 'artworks' }, { text: '按作者id搜索', urlStr: 'users' }],
+                    currentTabIndex: 0
+                }
+            },
+            mounted() {
+                this.focusBar()
+            },
+            methods: {
+                handleTabChange(index) {
+                    this.currentTabIndex = index
+                    this.focusBar()
+                },
+                handleSearch() {
+                    window.open(`https://www.pixiv.net/${this.tabs[this.currentTabIndex].urlStr}/` + this.id)
+                },
+                handleClear() {
+                    this.id = ''
+                    this.focusBar()
+                },
+                focusBar() {
+                    this.$refs.bar.focus()
+                }
+            }
+        })
+    </script>
+</body>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    html,
+    body,
+    #app,
+    .box {
+        height: 100%;
+    }
+
+    html {
+        background-color: #1f1f1f;
+    }
+
+    .box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .content {
+        width: 250px;
+    }
+
+    .title {
+        color: white;
+        text-align: center;
+        font-size: 20px;
+        line-height: 20px;
+        margin-bottom: 10px;
+    }
+
+    .name {
+        color: #2196f6;
+    }
+
+    .tabs {
+        display: flex;
+    }
+
+    .tabs li {
+        flex: 1;
+        height: 30px;
+        line-height: 24px;
+        text-align: center;
+        color: white;
+        border-top: 3px solid transparent;
+        border-bottom: 3px solid transparent;
+        cursor: pointer;
+    }
+
+    .active {
+        border-bottom: 3px solid #2196f6 !important;
+    }
+
+    .search {
+        margin-top: 5px;
+        text-align: center;
+    }
+
+    .bar {
+        display: block;
+        text-align: center;
+        width: 100%;
+        border: none;
+        font-size: 20px;
+        outline: none;
+        padding: 2px;
+    }
+
+    .btn {
+        border: none;
+        background-color: white;
+        outline: none;
+        padding: 10px;
+        margin-top: 10px;
+        cursor: pointer;
+    }
+</style>
+
+</html>
