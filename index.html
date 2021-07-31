@@ -36,9 +36,7 @@
                 }
             },
             mounted() {
-                setTimeout(() => {
-                    this.focusBar()
-                }, 0)
+                this.$nextTick(() => { this.focusBar() })
             },
             methods: {
                 handleTabChange(index) {
