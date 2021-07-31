@@ -19,7 +19,7 @@
                         @click="handleTabChange(index)">{{item.text}}</li>
                 </ul>
                 <div class="search">
-                    <input type="text" v-model="id" class="bar" @keyup.enter="handleSearch" ref="bar" autofocus>
+                    <input type="text" v-model="id" class="bar" @keyup.enter="handleSearch" ref="bar">
                     <button class="btn" @click="handleClear">清空搜索框</button>
                 </div>
             </div>
@@ -35,9 +35,11 @@
                     currentTabIndex: 0
                 }
             },
-            // mounted() {
-            //     this.$nextTick(() => { this.focusBar() })
-            // },
+            mounted() {
+                setTimeout(() => {
+                    this.focusBar()
+                }, 300);
+            },
             methods: {
                 handleTabChange(index) {
                     this.currentTabIndex = index
