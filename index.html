@@ -36,7 +36,9 @@
                 }
             },
             mounted() {
-                this.focusBar()
+                setTimeout(() => {
+                    this.focusBar()
+                }, 0)
             },
             methods: {
                 handleTabChange(index) {
